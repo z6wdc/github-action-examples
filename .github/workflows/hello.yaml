@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  printLog:
+  print:
     runs-on: ubuntu-latest
 
     steps:
-    - name: print 
+    - name: Hello
       run: echo "Hello World"
