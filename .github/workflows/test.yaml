@@ -10,9 +10,10 @@ on:
         default: development
 
 jobs:
-  print:
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: print
-        run: echo "GitHub Actions Implementation Test"
+  notify:
+    name: notify
+    uses: ./.github/workflows/notify.yml
+    with:
+      environment: ${{ inputs.environment }}
+      pretext: 'TEST'
+    secrets: inherit
