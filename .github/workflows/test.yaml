@@ -2,11 +2,18 @@ name: Test
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: デプロイ先の環境
+        required: true
+        type: environment
+        default: development
 
 jobs:
-  printLog:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: print 
-      run: echo "Hello World"
+  notify:
+    name: notify
+    uses: ./.github/workflows/notify.yml
+    with:
+      environment: ${{ inputs.environment }}
+      pretext: 'TEST'
+    secrets: inherit

@@ -1,0 +1,38 @@
+name: notify
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      status:
+        type: string
+        required: false
+      icon:
+        type: string
+        required: false
+      pretext:
+        type: string
+        required: true
+      fields:
+        type: string
+        required: false
+
+jobs:
+  notify:
+    name: Notify
+    runs-on: ubuntu-20.04
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": ${{ inputs.pretext }},
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
