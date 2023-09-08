@@ -2,11 +2,17 @@ name: Test
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: デプロイ先の環境
+        required: true
+        type: environment
+        default: development
 
 jobs:
-  printLog:
-    runs-on: ubuntu-latest
+  print:
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: print 
-      run: echo "Hello World"
+      - name: print
+        run: echo "GitHub Actions Implementation Test"
