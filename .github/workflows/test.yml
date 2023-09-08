@@ -15,5 +15,5 @@ jobs:
     uses: ./.github/workflows/slack_notify.yml
     with:
       environment: ${{ inputs.environment }}
-      pretext: 'TEST'
+      pretext: "TEST"
     secrets: inherit
