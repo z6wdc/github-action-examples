@@ -31,7 +31,16 @@ jobs:
         with:
           payload: |
             {
-              "text": ${{ inputs.pretext }},
+              "text": "GitHub Action build result: ${{ inputs.pretext }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action Notify Message: ${{ inputs.pretext }}"
+                  }
+                }
+              ]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
